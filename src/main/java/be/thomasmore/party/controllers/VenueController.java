@@ -41,6 +41,7 @@ public class VenueController {
     public String venueList(Model model) {
         Iterable<Venue> allVenues = venueRepository.findAll();
         model.addAttribute("venues", allVenues);
+        model.addAttribute("nrVenues", venueRepository.count());
         return "venuelist";
     }
 
@@ -48,6 +49,7 @@ public class VenueController {
     public String venueListWithFilter(Model model) {
         Iterable<Venue> allVenues = venueRepository.findAll();
         model.addAttribute("venues", allVenues);
+        model.addAttribute("nrVenues", venueRepository.count());
         model.addAttribute("showFilter", true);
         return "venuelist";
     }

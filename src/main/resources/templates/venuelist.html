@@ -10,6 +10,9 @@
 <div class="row1">
     <div class="row1content">
         <h2>venues</h2>
+        <div class="verticalmargin">
+            <span class="generalinfo" th:text="|${nrVenues} venues found|">0 venues found</span>
+        </div>
         <div class="filters" th:if="${showFilter}">
             <div class="verticalmargin">
                 <a th:href="@{/venuelist}" class="buttonLook filterButton">-</a>
@@ -25,6 +28,9 @@
             <div th:each="venue: ${venues}">
                 <a class="buttonLook mediumButton" th:href="@{|/venuedetails/${venue.id}}">
                     <span th:text="${venue.venueName}">venue name</span>
+                    <div>
+                        <span class="generalinfo" th:text="|Capacity: ${venue.capacity}|">Capacity: 0</span>
+                    </div>
                 </a>
             </div>
         </div>
