@@ -56,7 +56,7 @@ public class VenueController {
                                       @RequestParam(required = false) Integer minimumCapacity,
                                       @RequestParam(required = false) Integer maximumCapacity) {
         logger.info(String.format("venueListWithFilter -- min=%d", minimumCapacity));
-        List<Venue> venues = venueRepository.findByCapacityIsBetween(minimumCapacity!=null ? minimumCapacity : 0, maximumCapacity!=null ? maximumCapacity : 1000000);
+        List<Venue> venues = venueRepository.findByCapacity(minimumCapacity!=null ? minimumCapacity : 0, maximumCapacity!=null ? maximumCapacity : 1000000);
         model.addAttribute("minCapacity", minimumCapacity);
         model.addAttribute("maxCapacity", maximumCapacity);
         model.addAttribute("venues", venues);
