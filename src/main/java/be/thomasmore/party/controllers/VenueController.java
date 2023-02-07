@@ -43,4 +43,12 @@ public class VenueController {
         model.addAttribute("venues", allVenues);
         return "venuelist";
     }
+
+    @GetMapping("/venuelist/filter")
+    public String venueListWithFilter(Model model) {
+        Iterable<Venue> allVenues = venueRepository.findAll();
+        model.addAttribute("venues", allVenues);
+        model.addAttribute("showFilter", true);
+        return "venuelist";
+    }
 }

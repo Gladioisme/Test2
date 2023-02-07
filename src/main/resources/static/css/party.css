@@ -16,6 +16,14 @@ h2 {
     font-size: 2em;
 }
 
+h3 {
+    margin: 10px 0;
+}
+
+.onefilter + h3 {
+    margin-bottom: 0;
+}
+
 a {
     text-decoration: none;
 }
@@ -148,6 +156,8 @@ p { margin: 5px; }
 }
 
 .filters {
+    clear: left;
+    float: left;
 }
 
 .onefilter {
@@ -156,7 +166,29 @@ p { margin: 5px; }
 }
 
 .filtername {
-    width: 10em;
+    width: 70px;
     padding: 0.2em;
     text-align: right;
+}
+
+input + .filtername {
+    width: 30px;
+}
+
+input + span {
+    margin-left: 5px;
+}
+
+.verticalmargin {
+    margin: 8px 0;
+}
+
+.generalinfo {
+    font-size: 12px;
+    background-color: lightgoldenrodyellow;
+    padding: 1px 5px;
+}
+
+.collectionlist {
+    float: left;
 }
