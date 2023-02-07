@@ -54,11 +54,22 @@ public class VenueController {
     @GetMapping("/venuelist/filter")
     public String venueListWithFilter(Model model,
                                       @RequestParam(required = false) Integer minimumCapacity,
-                                      @RequestParam(required = false) Integer maximumCapacity) {
-        logger.info(String.format("venueListWithFilter -- min=%d", minimumCapacity));
-        List<Venue> venues = venueRepository.findByCapacity(minimumCapacity!=null ? minimumCapacity : 0, maximumCapacity!=null ? maximumCapacity : 1000000);
-        model.addAttribute("minCapacity", minimumCapacity);
+                                      @RequestParam(required = false) Integer maximumCapacity,
+                                      @RequestParam(required = false) Double distance,
+                                      @RequestParam(required = false) String foodProvided,
+                                      @RequestParam(required = false) String indoor,
+                                      @RequestParam(required = false) String outdoor) {
+        List<Venue> venues = venueRepository.findByCapacityDistanceFoodIndoorOutdoor(
+                minimumCapacity, maximumCapacity, distance,
+                ((foodProvided==null || foodProvided.equals("all")) ? null : (foodProvided.equals("yes") ? true : false)),
+                ((indoor==null || indoor.equals("all")) ? null : (indoor.equals("yes") ? true : false)),
+                ((outdoor==null || outdoor.equals("all")) ? null : (outdoor.equals("yes") ? true : false)));
         model.addAttribute("maxCapacity", maximumCapacity);
+        model.addAttribute("minCapacity", minimumCapacity);
+        model.addAttribute("distance", distance);
+        model.addAttribute("foodProvided", foodProvided);
+        model.addAttribute("indoor", indoor);
+        model.addAttribute("outdoor", outdoor);
         model.addAttribute("venues", venues);
         model.addAttribute("nrVenues", venues.size());
         model.addAttribute("showFilter", true);

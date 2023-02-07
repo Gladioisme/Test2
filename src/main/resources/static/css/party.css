@@ -172,7 +172,7 @@ p { margin: 5px; }
 }
 
 input + .filtername {
-    width: 30px;
+    width: 20px;
 }
 
 input + span {
