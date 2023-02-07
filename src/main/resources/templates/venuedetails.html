@@ -6,7 +6,7 @@
   <title>Venuedetails pagina</title>
 </head>
 <body>
-<div th:replace="~{fragments/headerfooter :: header}">Hier komt de header</div>
+<div th:replace="fragments/headerfooter :: header">Hier komt de header</div>
 <div class="freespaceforheader"></div>
 <div class="row1">
   <div class="row1content" th:if="${venue}">
@@ -42,6 +42,6 @@
     <p>no venue was chosen</p>
   </div>
 </div>
-<div th:replace="~{fragments/headerfooter :: footer}">Hier komt de header</div>
+<div th:replace="fragments/headerfooter :: footer">Hier komt de header</div>
 </body>
 </html>
