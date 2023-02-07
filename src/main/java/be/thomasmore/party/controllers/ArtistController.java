@@ -23,8 +23,9 @@ public class ArtistController {
 
     @GetMapping("/artistlist")
     public String artistList(Model model) {
-        Iterable<Artist> artists = artistRepository.findAll();
+        List<Artist> artists = artistRepository.findAllBy();
         model.addAttribute("artists", artists);
+        model.addAttribute("nrArtists", artists.size());
         return "artistlist";
     }
 
@@ -33,7 +34,7 @@ public class ArtistController {
     public String artistListWithFilter(Model model, @RequestParam(required = false) String keyword) {
         logger.info("artistListWithFilter -- keyword=" + keyword);
         model.addAttribute("keyword", keyword);
-        List<Artist> artists = artistRepository.findByArtistNameContainingIgnoreCase(keyword!=null ? keyword : "");
+        List<Artist> artists = artistRepository.findByKeyword(keyword);
         model.addAttribute("artists", artists);
         model.addAttribute("nrArtists", artists.size());
         model.addAttribute("showFilter", true);
