@@ -6,11 +6,11 @@
   <title>Homepagina</title>
 </head>
 <body>
-<div th:replace="fragments/headerfooter :: header">Hier komt de header</div>
+<div th:replace="~{fragments/headerfooter :: header}">Hier komt de header</div>
 <div class="freespaceforheader"></div>
 <div class="row1">
   <img th:src="@{/img/party.png}" src="../static/img/party.png" alt="Party"/>
 </div>
-<div th:replace="fragments/headerfooter :: footer">Hier komt de header</div>
+<div th:replace="~{fragments/headerfooter :: footer}">Hier komt de header</div>
 </body>
 </html>
