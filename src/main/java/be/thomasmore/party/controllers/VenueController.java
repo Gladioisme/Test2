@@ -1,6 +1,7 @@
 package be.thomasmore.party.controllers;
 
 import be.thomasmore.party.model.Venue;
+import be.thomasmore.party.repositories.PartyRepository;
 import be.thomasmore.party.repositories.VenueRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,8 @@ public class VenueController {
     private Logger logger = LoggerFactory.getLogger(VenueController.class);
     @Autowired
     private VenueRepository venueRepository;
+    @Autowired
+    private PartyRepository partyRepository;
 
     @GetMapping({"/venuedetails/{id}", "/venuedetails"})
     public String venueDetails(Model model, @PathVariable(required = false) Integer id) {
@@ -28,7 +31,9 @@ public class VenueController {
         Optional<Venue> optionalPrev = venueRepository.findFirstByIdLessThanOrderByIdDesc(id);
         Optional<Venue> optionalNext = venueRepository.findFirstByIdGreaterThanOrderById(id);
         if (optionalVenue.isPresent()) {
-            model.addAttribute("venue", optionalVenue.get());
+            Venue venue = optionalVenue.get();
+            model.addAttribute("venue", venue);
+            model.addAttribute("parties", partyRepository.findByVenue(venue));
         }
         if (optionalPrev.isPresent()) {
             model.addAttribute("prev", optionalPrev.get().getId());

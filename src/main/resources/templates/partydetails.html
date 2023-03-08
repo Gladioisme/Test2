@@ -1,0 +1,46 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Party Details</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/party.css}" href="/css/party.css" />
+</head>
+<body>
+<div th:replace="~{fragments/headerfooter :: header}">Hier komt de header</div>
+<div class="row1">
+    <div class="row1content">
+        <div th:if="${party}">
+            <div th:if="${prev!=null}" class="prevButtonDiv">
+                <a class="buttonLook smallButton" th:href="@{'/partydetails/' + ${prev}}">&lt;</a>
+            </div>
+            <div th:if="${next!=null}" class="nextButtonDiv">
+                <a class="buttonLook smallButton" th:href="@{'/partydetails/' + ${next}}">&gt;</a>
+            </div>
+        </div>
+        <div>
+            <h2 th:if="${party}" th:text="|party: ${party.name}|">party: onbekend</h2>
+            <p th:if="${party}" th:text="${party.date}">date</p>
+            <p th:unless="${party}">party: onbekend</p>
+        </div>
+        <div th:if="${party}">
+            <div class="info">Where : </div>
+            <div>
+                <p>
+                    <span th:text="|${party.getVenue().getVenueName()} (${party.getVenue().getCity()}, ${party.getVenue().getDistanceFromPublicTransportInKm()} km van openbaar vervoer)|">-</span>
+                    &nbsp;&nbsp;<a th:href="@{'/venuedetails/'+${party.getId()}}">&rarr;</a>
+                </p>
+            </div><br>
+            <div class="info">Price : </div>
+            <div th:if="${party.priceInEur}"><p th:text="|${party.pricePresaleInEur} &euro; (presale) / ${party.priceInEur} &euro;|">0</p></div>
+            <div th:unless="${party.priceInEur}"><p>gratis</p></div>
+            <br>
+            <div class="info">Doors : </div>
+            <div><p th:text="${party.doors}">0</p></div><br>
+            <div class="info">Extra info : </div>
+            <div><p th:text="${party.getExtraInfo()}">no</p></div><br>
+        </div>
+    </div>
+</div>
+<div th:replace="~{fragments/headerfooter :: footer}">Hier komt de footer</div>
+</body>
+</html>
