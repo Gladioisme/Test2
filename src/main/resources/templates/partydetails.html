@@ -13,6 +13,9 @@
             <div th:if="${prev!=null}" class="prevButtonDiv">
                 <a class="buttonLook smallButton" th:href="@{'/partydetails/' + ${prev}}">&lt;</a>
             </div>
+            <div class="editButtonDiv">
+                <a class="buttonLook smallButton" th:href="@{'/admin/partyedit/' + ${party.id}}">edit</a>
+            </div>
             <div th:if="${next!=null}" class="nextButtonDiv">
                 <a class="buttonLook smallButton" th:href="@{'/partydetails/' + ${next}}">&gt;</a>
             </div>
