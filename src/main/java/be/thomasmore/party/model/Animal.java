@@ -17,7 +17,7 @@ public class Animal {
     private String bio;
     @ManyToMany(mappedBy = "animals")
     private Collection<Party> parties;
-    
+
     public Animal() {
     }
 
