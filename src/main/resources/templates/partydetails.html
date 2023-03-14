@@ -38,6 +38,14 @@
             <div><p th:text="${party.doors}">0</p></div><br>
             <div class="info">Extra info : </div>
             <div><p th:text="${party.getExtraInfo()}">no</p></div><br>
+            <h2>line up:</h2>
+            <div class="artistlist collectionlist">
+                <div th:each="artist: ${party.getArtists()}">
+                    <a class="buttonLook mediumButton" th:href="@{'/artistdetails/'+${artist.getId()}}">
+                        <span th:text="${artist.getArtistName()}">venue name</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
