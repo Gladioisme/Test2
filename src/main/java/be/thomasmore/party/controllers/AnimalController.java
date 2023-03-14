@@ -9,12 +9,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class AnimalController {
     @Autowired
     private AnimalRepository animalRepository;
+
+    @GetMapping("/animallist")
+    public String animalList(Model model) {
+        List<Animal> animals = animalRepository.findAllBy();
+        model.addAttribute("animals", animals);
+        model.addAttribute("nrAnimals", animals.size());
+        return "animallist";
+    }
 
     @GetMapping({"/animaldetails", "/animaldetails/{id}"})
     public String animalDetails(Model model, @PathVariable(required = false) Integer id) {

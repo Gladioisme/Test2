@@ -29,7 +29,6 @@ public class ArtistController {
         return "artistlist";
     }
 
-
     @GetMapping("/artistlist/filter")
     public String artistListWithFilter(Model model, @RequestParam(required = false) String keyword) {
         logger.info("artistListWithFilter -- keyword=" + keyword);
