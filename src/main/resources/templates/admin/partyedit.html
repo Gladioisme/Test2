@@ -19,26 +19,26 @@
             <p th:unless="${party}">party: onbekend</p>
         </div>
         <div th:if="${party}">
-            <form>
+            <form th:action="@{|/admin/partyedit/*{id}|}" method="post">
                 <input type="submit" name="bewaar" value="save" class="saveButtonDiv buttonLook smallButton">
                 <label for="partyName" class="info">Name : </label>
                 <input type="text" id="partyName" th:field="*{name}"><br>
+                <div class="info">Where : </div>
+                <div>
+                    <p>
+                        <span th:text="|*{venue.getVenueName()} (*{venue.getCity()}, *{venue.getDistanceFromPublicTransportInKm()} km van openbaar vervoer)|">-</span>
+                        &nbsp;&nbsp;<a th:href="@{'/venuedetails/' + *{id}}">&rarr;</a>
+                    </p>
+                </div><br>
+                <label for="price" class="info">Price : </label>
+                <input type="number" id="price" th:field="*{priceInEur}" min="0" step="1"><br>
+                <label for="presaleprice" class="info">Presale price : </label>
+                <input type="number" id="presaleprice" th:field="*{pricePresaleInEur}" min="0" step="1"><br>
+                <div class="info">Doors : </div>
+                <div><p th:text="*{doors}">0</p></div><br>
+                <label for="extrainfo" class="info">Extra info : </label>
+                <textarea id="extrainfo" th:field="*{extraInfo}">dummy</textarea><br>
             </form>
-            <div class="info">Where : </div>
-            <div>
-                <p>
-                    <span th:text="|*{venue.getVenueName()} (*{venue.getCity()}, *{venue.getDistanceFromPublicTransportInKm()} km van openbaar vervoer)|">-</span>
-                    &nbsp;&nbsp;<a th:href="@{'/venuedetails/' + *{id}}">&rarr;</a>
-                </p>
-            </div><br>
-            <div class="info">Price : </div>
-            <div th:if="*{priceInEur}"><p th:text="|*{pricePresaleInEur} &euro; (presale) / ${party.priceInEur} &euro;|">0</p></div>
-            <div th:unless="*{priceInEur}"><p>gratis</p></div>
-            <br>
-            <div class="info">Doors : </div>
-            <div><p th:text="*{doors}">0</p></div><br>
-            <div class="info">Extra info : </div>
-            <div><p th:text="*{extraInfo}">no</p></div><br>
         </div>
     </div>
 </div>
