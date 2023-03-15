@@ -21,10 +21,8 @@
         <div th:if="${party}">
             <form>
                 <input type="submit" name="bewaar" value="save" class="saveButtonDiv buttonLook smallButton">
-                <div class="info">Name:</div>
-                <div>
-                    <input type="text" name="partyName" th:value="*{name}">
-                </div>
+                <label for="partyName" class="info">Name : </label>
+                <input type="text" id="partyName" th:field="*{name}"><br>
             </form>
             <div class="info">Where : </div>
             <div>
