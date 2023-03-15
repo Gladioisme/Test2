@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Party Edit</title>
+    <title>Party New</title>
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/party.css}" href="/css/party.css" />
 </head>
 <body>
@@ -11,15 +11,15 @@
     <div class="row1content" th:object="${party}">
         <div th:if="${party}">
             <div class="editButtonDiv">
-                <a class="buttonLook smallButton" th:href="@{'/partydetails/' + ${party.id}}">back</a>
+                <a class="buttonLook smallButton" th:href="@{'/partylist'}">back</a>
             </div>
         </div>
         <div>
-            <h2 th:if="${party}" th:text="|party: *{name}|">party: onbekend</h2>
+            <h2 th:if="${party}">party: nieuw</h2>
             <p th:unless="${party}">party: onbekend</p>
         </div>
         <div th:if="${party}">
-            <form th:action="@{|/admin/partyedit/*{id}|}" method="post">
+            <form th:action="@{/admin/partynew}" method="post">
                 <input type="submit" name="bewaar" value="save" class="saveButtonDiv buttonLook smallButton">
                 <label for="partyName" class="info">Name : </label>
                 <input type="text" id="partyName" th:field="*{name}"><br>
@@ -27,7 +27,7 @@
                 <input type="date" id="partyDate" th:field="*{date}"><br>
                 <label for="where" class="info">Where : </label>
                 <select id="where" th:field="*{venue}">
-                    <option th:each="v : ${venues}" th:selected="*{venue}"
+                    <option th:each="v : ${venues}"
                             th:value="${v.id}"
                             th:text="${v.venueName + ' (' + v.city + ')'}"></option>
                 </select><br>

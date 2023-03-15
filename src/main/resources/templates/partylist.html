@@ -9,6 +9,11 @@
 <div th:replace="~{fragments/headerfooter :: header}">Hier komt de header</div>
 <div class="row1">
     <div class="row1content">
+        <div>
+            <div class="editButtonDiv">
+                <a class="buttonLook smallButton" th:href="@{/admin/partynew}">new</a>
+            </div>
+        </div>
         <h2>parties</h2>
         <div class="verticalmargin">
             <span class="generalinfo" th:text="|${nrParties} parties found|">0 parties found</span>

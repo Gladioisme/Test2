@@ -110,6 +110,12 @@ a {
     top: 160px;
 }
 
+.editBeforeDeleteButtonDiv {
+    position: fixed;
+    right: 120px;
+    top: 160px;
+}
+
 .editButtonDiv {
     position: fixed;
     right: 50px;

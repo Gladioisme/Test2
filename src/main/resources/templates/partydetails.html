@@ -13,8 +13,13 @@
             <div th:if="${prev!=null}" class="prevButtonDiv">
                 <a class="buttonLook smallButton" th:href="@{'/partydetails/' + ${prev}}">&lt;</a>
             </div>
-            <div class="editButtonDiv">
+            <div class="editBeforeDeleteButtonDiv">
                 <a class="buttonLook smallButton" th:href="@{'/admin/partyedit/' + ${party.id}}">edit</a>
+            </div>
+            <div class="editButtonDiv">
+                <form th:action="@{'/admin/partydelete/' + ${party.id}}" method="post">
+                    <input type="submit" name="delete" value="delete" class="buttonLook smallButton">
+                </form>
             </div>
             <div th:if="${next!=null}" class="nextButtonDiv">
                 <a class="buttonLook smallButton" th:href="@{'/partydetails/' + ${next}}">&gt;</a>
